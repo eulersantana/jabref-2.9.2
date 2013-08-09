@@ -208,7 +208,7 @@ public class PrefsDialog3 extends JDialog {
 
 		pack(); // setSize(440, 500);
 
-        /** Look through component sizes to find which tab is to blame
+        /** Look through component sizes to find which tab is to blameprefsDialog
          *  when the dialog grows too large:
         for (Component co : comps) {
             System.out.println(co.getPreferredSize());
