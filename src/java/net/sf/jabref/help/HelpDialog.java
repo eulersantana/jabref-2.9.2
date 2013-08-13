@@ -16,6 +16,7 @@
 package net.sf.jabref.help;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
@@ -27,6 +28,7 @@ import net.sf.jabref.Globals;
 import net.sf.jabref.JabRef;
 import net.sf.jabref.JabRefFrame;
 import net.sf.jabref.Util;
+
 
 /**
  * 
@@ -158,4 +160,9 @@ public class HelpDialog extends JDialog implements HyperlinkListener {
 			back.setEnabled(true);
 		}
 	}
+	
+	
+	 
+
+	  
 }

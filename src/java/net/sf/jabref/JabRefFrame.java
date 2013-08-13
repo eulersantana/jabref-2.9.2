@@ -17,6 +17,7 @@ package net.sf.jabref;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -165,7 +166,7 @@ public class JabRefFrame extends JFrame implements OutputPrinter {
                                 GUIGlobals.getIconUrl("helpContents")),
       about = new HelpAction("About JabRef", helpDiag,
                              GUIGlobals.aboutPage, Globals.lang("About JabRef"),
-                             GUIGlobals.getIconUrl("about")),
+                             GUIGlobals.getIconUrl("about")),                       
       editEntry = new GeneralAction("edit", "Edit entry",
                                Globals.lang("Edit entry"),
                                prefs.getKey("Edit entry")),
@@ -623,7 +624,26 @@ AboutAction aboutAction = new AboutAction();
       about();
     }
   }
+  
+public void linkJabRef(){
+  	  Desktop desk = java.awt.Desktop.getDesktop();     
+  	  try {    
+  	       desk.browse(new java.net.URI("http://jabref.sourceforge.net/"));    
+  	  } catch (Exception e) {    
+  	       e.printStackTrace();    
+  	  }
+ }
+  
 
+  class AboutActionLink  implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+        	linkJabRef();
+        }
+  }
+
+  JMenuItem linkPage = new JMenuItem("JabRef - web");
+  AboutActionLink aboutActionLink = new AboutActionLink();
+ 
 
   // General info dialog.  The OSXAdapter calls this method when "About OSXAdapter"
   // is selected from the application menu.
@@ -663,6 +683,7 @@ AboutAction aboutAction = new AboutAction();
 
   }
 
+  
   // General preferences dialog.  The OSXAdapter calls this method when "Preferences..."
   // is selected from the application menu.
   public void preferences() {
@@ -1431,13 +1452,14 @@ public JabRefPreferences prefs() {
 
       //options.add(selectKeys);
       mb.add(options);
-
+      linkPage.addActionListener(aboutActionLink);
       helpMenu.add(help);
       helpMenu.add(contents);
       helpMenu.addSeparator();
       helpMenu.add(errorConsole);
       helpMenu.addSeparator();
-      helpMenu.add(about);
+      helpMenu.add(linkPage);
+      helpMenu.add(about);      
       mb.add(helpMenu);
   }
 

@@ -15,10 +15,13 @@
 */
 package net.sf.jabref.help;
 
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 
+
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.KeyStroke;
@@ -26,6 +29,7 @@ import javax.swing.KeyStroke;
 import net.sf.jabref.GUIGlobals;
 import net.sf.jabref.Globals;
 import net.sf.jabref.MnemonicAwareAction;
+
 
 /**
  * This Action keeps a reference to a URL. When activated, it shows the help
@@ -69,7 +73,6 @@ public class HelpAction extends MnemonicAwareAction {
 		this.diag = diag;
 		this.helpFile = helpFile;
 	}
-
 	public HelpAction(String title, HelpDialog diag, String helpFile, String tooltip, KeyStroke key) {
 		super(GUIGlobals.getImage("help"));
 		putValue(NAME, title);
@@ -101,11 +104,20 @@ public class HelpAction extends MnemonicAwareAction {
     public void setHelpFile(String helpFile) {
         this.helpFile = helpFile;
     }
+    
+    
 
 	public void actionPerformed(ActionEvent e) {
-        if (resourceOwner == null)
+    
+		if (resourceOwner == null)
 		    diag.showPage(helpFile);
         else
             diag.showPage(helpFile, resourceOwner);
+    
 	}
+	 
+	
+	  
+	  
+	  
 }
