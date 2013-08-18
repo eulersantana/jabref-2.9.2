@@ -640,8 +640,8 @@ public void linkJabRef(){
         	linkJabRef();
         }
   }
-
-  JMenuItem linkPage = new JMenuItem("JabRef - web");
+ //Criação do menu item para add no menu about
+  JMenuItem linkPage = new JMenuItem("JabRef website");
   AboutActionLink aboutActionLink = new AboutActionLink();
  
 
