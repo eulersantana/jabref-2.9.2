@@ -9,6 +9,7 @@ import net.sf.jabref.FieldTextArea;
 import net.sf.jabref.GUIGlobals;
 import net.sf.jabref.Globals;
 import net.sf.jabref.JabRefPreferences;
+import net.sf.jabref.SearchManager2;
 import junit.framework.TestCase;
 
 public class SearchTextListenerTest extends TestCase {
@@ -73,6 +74,9 @@ public class SearchTextListenerTest extends TestCase {
 
 		//there should be none areas to highlight!
 		assertEquals("Expected no highlighting area ",0,highlight.length);
+		
+		//Verifica se a palavra ainda está acentuada		
+		assertTrue(SearchManager2.removeAccents("Você"), SearchManager2.removeAccents("Você").equals("Voce"));
 	}
 	
 

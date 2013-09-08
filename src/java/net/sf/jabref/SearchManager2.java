@@ -20,6 +20,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.*;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -473,6 +474,16 @@ public class SearchManager2 extends SidePaneComponent
             SwingUtilities.invokeLater(t);
         }
     }
+    
+    public static String removeAccents(String str) {
+		
+	    str = Normalizer.normalize(str, Normalizer.Form.NFD);
+	
+	    str = str.replaceAll("[^\\p{ASCII}]", "");
+	
+	    return str;
+	
+	}
 
     public void actionPerformed(ActionEvent e) {
 
@@ -490,12 +501,17 @@ public class SearchManager2 extends SidePaneComponent
             clearSearchLater();
             return;
         }
+        
+      
+        String palavra = removeAccents(searchField.getText());
+    	
+         
 
-        fireSearchlistenerEvent(searchField.getText());
+        fireSearchlistenerEvent(palavra);
             
         // Setup search parameters common to both normal and float.
         Hashtable<String, String> searchOptions = new Hashtable<String, String>();
-        searchOptions.put("option",searchField.getText()) ;
+        searchOptions.put("option",palavra) ;
         SearchRuleSet searchRules = new SearchRuleSet() ;
         SearchRule rule1;
 
